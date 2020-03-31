@@ -1,0 +1,41 @@
+---
+ip: "192.168.10.10"
+memory: 2048
+cpus: 2
+provider: virtualbox
+
+authorize: c:/Users/James McCarthy/.ssh/id_rsa.pub
+
+keys:
+    - c:/Users/James McCarthy/.ssh/id_rsa
+
+folders:
+    - map: c:/Users/James McCarthy/Desktop/homestead/projects
+      to: /home/vagrant/projects
+
+# C:\Windows\System32\drivers\etc\hosts
+# If you change the sites property after provisioning the Homestead box, you
+# should re-run vagrant reload --provision to update the Nginx configuration on
+# the virtual machine.
+sites:
+    - map: art_gallery.test
+      to: /home/vagrant/projects/art_gallery/public
+    - map: laravel_7.test
+      to: /home/vagrant/projects/laravel_7/public
+    - map: auth.test
+      to: /home/vagrant/projects/auth/public
+databases:
+    - art_gallery
+    - laravel_7
+    - auth
+
+features:
+    - mariadb: false
+    - ohmyzsh: false
+    - webdriver: false
+# ports:
+#     - send: 50000
+#       to: 5000
+#     - send: 7777
+#       to: 777
+#       protocol: udp
